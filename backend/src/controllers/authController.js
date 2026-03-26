@@ -117,13 +117,21 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
     const link = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
-    await sendEmail(
+
+    // TODO: enable actual email sending stuff, temporarily disabled
+    const devMsg = `Eğer bu e-posta kayıtlıysa, sıfırlama bağlantısı gönderildi. GEÇİCİ DEV ŞİFRE SIFIRLAMA LİNKİ: ${link}`;
+
+    res.json({ message: devMsg });
+
+    
+/*     await sendEmail(
       email,
       'Kampüs Platformu - Şifre Sıfırlama',
       `<p>Şifrenizi sıfırlamak için <a href="${link}">tıklayın</a>. Bu bağlantı 1 saat geçerlidir.</p>`
     );
+   
 
-    res.json({ message: genericMsg });
+    res.json({ message: genericMsg }); */
   } catch (err) {
     res.status(500).json({ message: 'Sunucu hatası.' });
   }
