@@ -1,0 +1,4 @@
+# temporarily unignoring env
+# .env
+node_modules/
+!.gitignore

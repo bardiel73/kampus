@@ -1,0 +1,16 @@
+# :1525 vs domain
+:1525 {
+    handle /api/* {
+        reverse_proxy localhost:5000
+    }
+
+    handle /uploads/* {
+        reverse_proxy localhost:5000
+    }
+
+    handle {
+        root * ./dist
+        try_files {path} /index.html
+        file_server
+    }
+}
